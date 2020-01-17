@@ -514,14 +514,19 @@ function MultiDragPlugin() {
 			 * @param  {HTMLElement} el    The element to be selected
 			 */
 			select(el) {
-				let sortable = el.parentNode[expando];
-				if (!sortable || !sortable.options.multiDrag || ~multiDragElements.indexOf(el)) return;
+        console.log('1', el.parentNode)
+        let sortable = el.parentNode[expando];
+        console.log('2', sortable, 'sortable.options.multiDrag', sortable.options.multiDrag, 'multiDragElements', multiDragElements, multiDragElements.indexOf(el), ~multiDragElements.indexOf(el))
+        if (!sortable || !sortable.options.multiDrag || ~multiDragElements.indexOf(el)) return;
+        console.log('3', multiDragSortable, sortable, multiDragSortable && multiDragSortable !== sortable)
 				if (multiDragSortable && multiDragSortable !== sortable) {
 					multiDragSortable.multiDrag._deselectMultiDrag();
 					multiDragSortable = sortable;
-				}
-				toggleClass(el, sortable.options.selectedClass, true);
+        }
+        console.log('4', sortable, sortable.options, sortable.options.selectedClass)
+        toggleClass(el, sortable.options.selectedClass, true);
 				multiDragElements.push(el);
+        console.log(multiDragElements, 'sucess!!', el)
 			},
 			/**
 			 * Deselects the provided multi-drag item
